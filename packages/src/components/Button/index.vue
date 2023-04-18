@@ -7,6 +7,9 @@ import { computed } from 'vue'
 defineOptions({ name: 'i-button' })
 
 type ButtonProps = {
+  /**
+   * 按钮类型
+   */
   type?: string
 }
 const buttonProps = defineProps<ButtonProps>()

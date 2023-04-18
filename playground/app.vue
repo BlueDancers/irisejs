@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { IButton } from '@irises/ui'
+import { IButton } from '@irises/ui';
 </script>
 
 <style scoped></style>
