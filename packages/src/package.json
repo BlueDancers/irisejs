@@ -1,0 +1,16 @@
+{
+  "name": "@irises/ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@irises/shared": "workspace:^1.0.0"
+  }
+}
