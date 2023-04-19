@@ -70,17 +70,19 @@ onMounted(() => {
   isShow.value = true
   timeOutFun.value = setTimeout(() => {
     isShow.value = false
-    emit('close')
+    setTimeout(() => {
+      emit('close')
+    }, 200)
   }, props.duration)
 })
 
 function close() {
   clearTimeout(timeOutFun.value)
   return new Promise((resolve, reject) => {
+    isShow.value = false
     setTimeout(() => {
-      isShow.value = false
       resolve(null)
-    }, 100)
+    }, 200)
   })
 }
 
