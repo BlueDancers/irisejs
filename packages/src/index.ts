@@ -1,8 +1,9 @@
 import { App } from 'vue'
 import { IButton } from './components/Button'
+import { IPopup } from './components/Popup'
 
 // 全局安装
-let componentsList = [IButton]
+let componentsList = [IButton, IPopup]
 export default {
   install: (app: App) => {
     componentsList.forEach((item) => {
@@ -12,4 +13,4 @@ export default {
 }
 
 // 按需引入
-export { IButton }
+export { IButton, IPopup }
