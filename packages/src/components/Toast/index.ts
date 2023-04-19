@@ -10,9 +10,10 @@ import { paramsType } from './types'
 export function Toast(params: paramsType) {
   const div = document.createElement('div')
   document.body.appendChild(div)
+
   const vnode = createVNode(IToast, {
     ...params,
-    onClose: unLoad(),
+    onClose: unLoad,
   })
   render(vnode, div)
 

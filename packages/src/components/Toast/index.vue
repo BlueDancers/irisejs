@@ -96,7 +96,7 @@ defineExpose({
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .tost_box {
@@ -111,7 +111,7 @@ defineExpose({
   flex-direction: column;
   align-items: center;
   .tost_icon {
-    margin: 0 16px;
+    margin: 0 16px 10px;
     width: 56px;
     height: 56px;
   }
@@ -125,7 +125,7 @@ defineExpose({
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.1s ease;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .v-enter-from,
