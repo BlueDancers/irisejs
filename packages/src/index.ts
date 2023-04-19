@@ -1,6 +1,7 @@
 import { App } from 'vue'
 import { IButton } from './components/Button'
 import { IPopup } from './components/Popup'
+import { Toast } from './components/Toast/index'
 
 // 全局安装
 let componentsList = [IButton, IPopup]
@@ -13,4 +14,4 @@ export default {
 }
 
 // 按需引入
-export { IButton, IPopup }
+export { IButton, IPopup, Toast }
