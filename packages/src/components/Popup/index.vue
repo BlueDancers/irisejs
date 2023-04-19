@@ -1,5 +1,5 @@
 <template>
-  <view class="a_popup" v-if="status != 0" @touchmove.stop.prevent="">
+  <view class="i_popup" v-if="status != 0" @touchmove.stop.prevent="">
     <view
       class="mask"
       :style="`background-color: ${props.bgColor};z-index:${zIndex}`"
@@ -55,7 +55,7 @@ type statusType = 0 | 1 | 2
 
 const props = withDefaults(defineProps<popupInter>(), {
   type: 'center',
-  bgColor: 'rgba(9, 8, 8, 0.3)',
+  bgColor: 'rgba(9, 8, 8, 0.6)',
   zIndex: 0,
   maskClose: true,
 })
@@ -106,14 +106,13 @@ defineExpose({
 </script>
 
 <style lang="less" scoped>
-.a_popup {
+.i_popup {
   .mask {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(9, 8, 8, 0.3);
     z-index: 0;
   }
   .base_style {
@@ -139,11 +138,11 @@ defineExpose({
   }
 
   // 中间进入
-  .puff-in-center {
+  .slide-in-center {
     animation: puff-in-center 0.24s cubic-bezier(0.47, 0, 0.745, 0.715) forwards;
   }
   // 中间离开
-  .puff-out-center {
+  .slide-out-center {
     animation: puff-out-center 0.24s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   }
   // 从下方进入
