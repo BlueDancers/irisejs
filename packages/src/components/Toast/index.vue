@@ -4,15 +4,8 @@
     <div v-if="isShow">
       <!-- 遮罩层 -->
       <div class="mask" v-if="mask"></div>
-      <div
-        class="tost_box"
-        :style="icon == 'none' ? `padding:10px 20px;` : 'padding:16px 20px;'"
-      >
-        <img
-          v-if="icon && icon != 'none'"
-          class="tost_icon"
-          :src="ICON_STYLE[icon]"
-        />
+      <div class="tost_box" :style="icon == 'none' ? `padding:10px 20px;` : 'padding:16px 20px;'">
+        <img v-if="icon && icon != 'none'" class="tost_icon" :src="ICON_STYLE[icon]" />
         <div class="text">{{ props.title }}</div>
       </div>
     </div>
@@ -42,6 +35,10 @@ type paramsType = {
   duration?: number
 }
 
+const emit = defineEmits<{
+  (event: 'close'): void
+}>()
+
 const props = withDefaults(defineProps<paramsType>(), {
   title: '',
   icon: 'none',
@@ -50,17 +47,25 @@ const props = withDefaults(defineProps<paramsType>(), {
 })
 
 const isShow = ref(false) // 是否显示
+const timeOutFun = ref() // 关闭定时器
 
 // 注册定时器控制组件的消失
 onMounted(() => {
   isShow.value = true
-  setTimeout(() => {
+  timeOutFun.value = setTimeout(() => {
     isShow.value = false
+    emit('close')
   }, props.duration)
 })
 
 function close() {
-  isShow.value = false
+  clearTimeout(timeOutFun.value)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      isShow.value = false
+      resolve(null)
+    }, 100)
+  })
 }
 
 defineExpose({

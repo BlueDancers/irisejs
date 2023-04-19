@@ -22,9 +22,10 @@ function openToast() {
   let toast = Toast({
     title: '测试',
     mask: true,
+    duration: 3000,
   })
 
-  setTimeout(() => toast.close(), 2000)
+  // setTimeout(() => toast.close(), 2000)
 }
 </script>
 

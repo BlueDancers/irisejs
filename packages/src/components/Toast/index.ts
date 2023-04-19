@@ -2,23 +2,34 @@ import { createVNode, render, VNode } from 'vue'
 import IToast from './index.vue'
 import { paramsType } from './types'
 
-const div = document.createElement('div')
-// 添加到body上
-document.body.appendChild(div)
-
-const renderToast = (vnode: any) => {
-  render(null, div) // 清空上一个虚拟dom
-  render(vnode, div)
-}
-
-// 根据不同的调用创建虚拟dom
+/**
+ * 创建toast
+ * @param params
+ * @returns
+ */
 export function Toast(params: paramsType) {
-  const vnode = createVNode(IToast, params)
+  const div = document.createElement('div')
+  document.body.appendChild(div)
+  const vnode = createVNode(IToast, {
+    ...params,
+    onClose: unLoad(),
+  })
+  render(vnode, div)
 
-  renderToast(vnode)
-
+  /**
+   * 关闭toast
+   */
   function close() {
-    vnode.component!.exposed!.close()
+    vnode.component!.exposed!.close().then(() => {
+      unLoad()
+    })
+  }
+  /**
+   * 卸载
+   */
+  function unLoad() {
+    render(null, div)
+    document.body.removeChild(div)
   }
 
   return {
