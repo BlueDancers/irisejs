@@ -1,7 +1,7 @@
 import { App } from 'vue'
 import { IButton } from './components/Button'
 import { IPopup } from './components/Popup'
-import { Loading } from './components/Loading'
+import { showLoading } from './components/Loading'
 import { Toast } from './components/Toast/index'
 
 // 全局安装
@@ -15,4 +15,4 @@ export default {
 }
 
 // 按需引入
-export { IButton, IPopup, Loading, Toast }
+export { IButton, IPopup, showLoading, Toast }
