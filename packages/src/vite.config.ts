@@ -10,7 +10,7 @@ export default defineConfig({
     // 生成dts文件
     dts({
       entryRoot: 'src',
-      outputDir: ['../../irises/src'],
+      outputDir: ['../../irise/src'],
       tsConfigFilePath: '../../tsconfig.json',
     }),
     DefineOptions(), // 为了支持vue3.0的defineOptions
@@ -26,7 +26,7 @@ export default defineConfig({
           entryFileNames: '[name].mjs', // 打包后文件名
           preserveModules: true, // 让打包目录和我们目录对应
           exports: 'named',
-          dir: '../../irises', // 配置打包根目录
+          dir: '../../irise', // 配置打包根目录
         },
       ],
     },

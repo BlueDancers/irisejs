@@ -13,35 +13,35 @@
 </template>
 
 <script setup lang="ts">
-import { IButton, IPopup, showLoading, Toast } from "@irises/ui";
-import { ref } from "vue";
+import { IButton, IPopup, showLoading, Toast } from 'irise'
+import { ref } from 'vue'
 
-const popupRef = ref();
+const popupRef = ref()
 
 const openPopup = () => {
-  popupRef.value.open();
-};
+  popupRef.value.open()
+}
 
-let loading: any;
+let loading: any
 
 function openToast() {
   let toast = Toast({
-    title: "测试",
+    title: '测试',
     mask: true,
     duration: 3000,
-  });
+  })
 
   // setTimeout(() => toast.close(), 2000)
 }
 
 function openLoading() {
   loading = showLoading({
-    title: "加载中",
-  });
+    title: '加载中',
+  })
 }
 
 function closeLoading() {
-  loading.close();
+  loading.close()
 }
 </script>
 

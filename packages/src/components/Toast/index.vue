@@ -4,15 +4,8 @@
     <div v-if="isShow">
       <!-- 遮罩层 -->
       <div class="mask" v-if="mask"></div>
-      <div
-        class="tost_box"
-        :style="icon == 'none' ? `padding:10px 20px;` : 'padding:16px 20px;'"
-      >
-        <img
-          v-if="icon && icon != 'none'"
-          class="tost_icon"
-          :src="ICON_STYLE[icon]"
-        />
+      <div class="tost_box" :style="icon == 'none' ? `padding:10px 20px;` : 'padding:16px 20px;'">
+        <img v-if="icon && icon != 'none'" class="tost_icon" :src="ICON_STYLE[icon]" />
         <div class="text">{{ props.title }}</div>
       </div>
     </div>
@@ -22,7 +15,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-type paramsType = {
+export type paramsType = {
   /**
    * 提示问题
    */
@@ -41,14 +34,11 @@ type paramsType = {
   duration?: number
 }
 
-let baseSuccessIcon =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAdVBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////li2ZAAAAAJnRSTlMAVqtVqtDMxMAMyLAXvCEeEwW5JwnVtrMlGxBdKZ/wj4M75Uwybybvs4EAAAIiSURBVHja7dzrThsxFEXhTa5QeiVNb2luQP3+j9gRCi2ZsWEGouhsa60HsPTJ/medIyIiIiIiIiIiIiIiIiIiIiKint1tl8vtWO4t1umh2V7WXWzSYysZd5Ge9Em2HTnSSK4dO9KtTHtwVPC2Oo50L8e6jvRVhmUcUxmWcaQ/8ivnuJZfOcfyt+zCESscsco5pgvZhSNWOGKVdfyQXThiVbNjhqNvOIY4PsouHLHCEauaHe9w9A3HEIfhHwiOWOGIFY5Y5Rzzn7ILR6zO5Li/UitHx359m9LNTk+ydKwOB1/u9ZilY5L+Ndahczjen/4+2hJLh+apLTmH4/LkDm3SscTVsUitxp6OLiSNLR3SpiuxdGieuhJHh+5SRmLokLY5iaFDGpUlp3d81v9MJD0cFpKc40PbYSDp6Qgv6e0ILhngCC0Z5AgsGegIKxnsCCrJOn7puUJKIjgKkjc7bl52hJNEcRQkho6CxNBRkBg6CpLXOq7UvyCSeI6SZLjj21BHAElMR0Fi6ChIDB0FiaGjIDF0FCSGjoKkl+N7KEdB0scRbgI9KzF0FCSGjoLE0FGQGDoKEkNHQVJwXAd2FCR5xxeFLidxdGQllo5GUomjkVTiaCSVOKRJJY5GUonjOcnIynEkMd8SN6nE0UgqcTSSShyNpBJHI6nEcSyZyLlJJQ5pd3Ds5N5qPU2ztfUCWyIiIiIiIiIiIiIiIiIiIiJ6e38BYCHHqe/6KukAAAAASUVORK5CYII='
-let baseErroringIcon =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAXVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9RKvvlAAAAHnRSTlMAiZiQpIWelZqNg6GogJKmbt6qUGSxtRZ5FclcOhfmWk3qAAAC/UlEQVR42uzVjU7CQBDE8YECtS3lQ0EFzL7/YxpNMEhHaVjP6zT7f4NfcjeLKIqiKIqiKIqiKIqiKIqiKJLtrTzacndAtl5Oxf71Cd429tl2g0xttvbRM3w92bklsvRo53zvyiyvZGlfFXA0tQwS7jDz/JOjXbaGI7fDatyfWU7J2r6193y1LBLusAr3t7OrZnDkc9jJc4y22SQzu2p78N9Dv8TvsI3zIGWQUMfSP4HXNegk4MgiaZhDUNJ1rBMMYVci42CSBZLVpJyX2f9JFswhKKEOQQl1CEq4I7nkIb2jQYKa1JIH7oCa5GeHlsTl8Eum6RwLJGyRSjK94VCR3HZoSDI4mKR0O3qNyPAlZQ4HH5hS0kElkg4qkXQwyQp3tfKMYJrhX0k6mKSQdPyJpBiCg0q8jhJZKrsSSQeVSDqYpELPqiE5HJKKzHfWVl2JpINKJB1MMsGNJmQkBlDRlUg6qETSQSWSDirp76gwoLqSuaQDqPpJ5kN3UImkg0puOyYYYEQi6WAfucZFtYqDSiQdVCLpoBJJB5O0ANCSIRh4865E0kElkg4m0XT0kNQQaT4SB1CPxAHUI3H8ImkhVj0SB9COxAG0I3G8t3cHOwjCQBRFR4w7V4LoRv//M3XjShNjCbGcvPsHkwAt7Zs7TCHKo6W87MrnV1kQlS2KsmlUtvHKj5Xyq6scPijHQcoBnXJkqhxiK9cKykWPcvWmXIYq19Pvdew2GRhQIhxKqEaJOSnBMyUKqIQzlbisEmBWIuVKyF9pu1AaYZTWpA9tb5tsFlPa95SGylVaXL9X0nMdTvO0087+rAQRDLSpEiKvwHQiiuBFUe4oEiRFS6WIwhR1myLTU/SGinBSUYD+opftWcqqaHIVcbGikj42PbL9yb0V3boiwGdGEnQ1JGKqdoaexnYM1c5ZGaRybf1wrLEUX6udURk2VPMKdTQuY3Mt4v7iVL/Tz0CuJ/s+RqTtazHjYR6mS/2N2zScD2OFEEIIIYQQQgghhBBCCJvlASONHAliOjFmAAAAAElFTkSuQmCC'
-
 const ICON_STYLE = {
-  error: baseErroringIcon,
-  success: baseSuccessIcon,
+  error:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAXVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9RKvvlAAAAHnRSTlMAiZiQpIWelZqNg6GogJKmbt6qUGSxtRZ5FclcOhfmWk3qAAAC/UlEQVR42uzVjU7CQBDE8YECtS3lQ0EFzL7/YxpNMEhHaVjP6zT7f4NfcjeLKIqiKIqiKIqiKIqiKIqiKJLtrTzacndAtl5Oxf71Cd429tl2g0xttvbRM3w92bklsvRo53zvyiyvZGlfFXA0tQwS7jDz/JOjXbaGI7fDatyfWU7J2r6193y1LBLusAr3t7OrZnDkc9jJc4y22SQzu2p78N9Dv8TvsI3zIGWQUMfSP4HXNegk4MgiaZhDUNJ1rBMMYVci42CSBZLVpJyX2f9JFswhKKEOQQl1CEq4I7nkIb2jQYKa1JIH7oCa5GeHlsTl8Eum6RwLJGyRSjK94VCR3HZoSDI4mKR0O3qNyPAlZQ4HH5hS0kElkg4qkXQwyQp3tfKMYJrhX0k6mKSQdPyJpBiCg0q8jhJZKrsSSQeVSDqYpELPqiE5HJKKzHfWVl2JpINKJB1MMsGNJmQkBlDRlUg6qETSQSWSDirp76gwoLqSuaQDqPpJ5kN3UImkg0puOyYYYEQi6WAfucZFtYqDSiQdVCLpoBJJB5O0ANCSIRh4865E0kElkg4m0XT0kNQQaT4SB1CPxAHUI3H8ImkhVj0SB9COxAG0I3G8t3cHOwjCQBRFR4w7V4LoRv//M3XjShNjCbGcvPsHkwAt7Zs7TCHKo6W87MrnV1kQlS2KsmlUtvHKj5Xyq6scPijHQcoBnXJkqhxiK9cKykWPcvWmXIYq19Pvdew2GRhQIhxKqEaJOSnBMyUKqIQzlbisEmBWIuVKyF9pu1AaYZTWpA9tb5tsFlPa95SGylVaXL9X0nMdTvO0087+rAQRDLSpEiKvwHQiiuBFUe4oEiRFS6WIwhR1myLTU/SGinBSUYD+opftWcqqaHIVcbGikj42PbL9yb0V3boiwGdGEnQ1JGKqdoaexnYM1c5ZGaRybf1wrLEUX6udURk2VPMKdTQuY3Mt4v7iVL/Tz0CuJ/s+RqTtazHjYR6mS/2N2zScD2OFEEIIIYQQQgghhBBCCJvlASONHAliOjFmAAAAAElFTkSuQmCC',
+  success:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAdVBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////li2ZAAAAAJnRSTlMAVqtVqtDMxMAMyLAXvCEeEwW5JwnVtrMlGxBdKZ/wj4M75Uwybybvs4EAAAIiSURBVHja7dzrThsxFEXhTa5QeiVNb2luQP3+j9gRCi2ZsWEGouhsa60HsPTJ/medIyIiIiIiIiIiIiIiIiIiIiKint1tl8vtWO4t1umh2V7WXWzSYysZd5Ge9Em2HTnSSK4dO9KtTHtwVPC2Oo50L8e6jvRVhmUcUxmWcaQ/8ivnuJZfOcfyt+zCESscsco5pgvZhSNWOGKVdfyQXThiVbNjhqNvOIY4PsouHLHCEauaHe9w9A3HEIfhHwiOWOGIFY5Y5Rzzn7ILR6zO5Li/UitHx359m9LNTk+ydKwOB1/u9ZilY5L+Ndahczjen/4+2hJLh+apLTmH4/LkDm3SscTVsUitxp6OLiSNLR3SpiuxdGieuhJHh+5SRmLokLY5iaFDGpUlp3d81v9MJD0cFpKc40PbYSDp6Qgv6e0ILhngCC0Z5AgsGegIKxnsCCrJOn7puUJKIjgKkjc7bl52hJNEcRQkho6CxNBRkBg6CpLXOq7UvyCSeI6SZLjj21BHAElMR0Fi6ChIDB0FiaGjIDF0FCSGjoKkl+N7KEdB0scRbgI9KzF0FCSGjoLE0FGQGDoKEkNHQVJwXAd2FCR5xxeFLidxdGQllo5GUomjkVTiaCSVOKRJJY5GUonjOcnIynEkMd8SN6nE0UgqcTSSShyNpBJHI6nEcSyZyLlJJQ5pd3Ds5N5qPU2ztfUCWyIiIiIiIiIiIiIiIiIiIiJ6e38BYCHHqe/6KukAAAAASUVORK5CYII=',
 }
 
 const emit = defineEmits<{

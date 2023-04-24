@@ -1,20 +1,20 @@
 {
-  "name": "irises",
+  "name": "irisejs",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/BlueDancers/irises/issues"
+    "url": "https://github.com/BlueDancers/irisejs/issues"
   },
-  "homepage": "https://github.com/BlueDancers/irises#readme",
+  "homepage": "https://github.com/BlueDancers/irisejs#readme",
   "exports": {
-    "import": "./irises/index.mjs",
-    "types": "./irises/index.d.ts"
+    "import": "./irise/index.mjs",
+    "types": "./irise/index.d.ts",
+    "style": "./irise/style.css"
   },
   "files": [
-    "irises"
+    "irise"
   ],
-  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",

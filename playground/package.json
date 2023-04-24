@@ -1,5 +1,5 @@
 {
-  "name": "@irises/playground",
+  "name": "@irisejs/playground",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@irises/ui": "workspace:^1.0.0"
+    "@irisejs/shared": "workspace:^1.0.0",
+    "irise": "workspace:^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

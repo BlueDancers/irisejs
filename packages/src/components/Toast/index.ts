@@ -1,6 +1,5 @@
 import { createVNode, render, VNode } from 'vue'
-import IToast from './index.vue'
-import { paramsType } from './types'
+import IToast, { paramsType } from './index.vue'
 
 /**
  * 创建toast

@@ -1,16 +1,16 @@
 import { createVNode, render, VNode } from 'vue'
-import ILading from './index.vue'
+import ILading, { paramsType } from './index.vue'
 
-let loadingDom: any; // 判断loading是否存在
-let vnode: VNode | null = null; // loading虚拟节点
-let div: HTMLDivElement; // loading挂载点
+let loadingDom: any // 判断loading是否存在
+let vnode: VNode | null = null // loading虚拟节点
+let div: HTMLDivElement // loading挂载点
 
-/**  
+/**
  * 创建loading
  * @param params
  * @returns
  */
-export function showLoading(params?: any) {
+export function showLoading(params?: paramsType) {
   // 若 loading 已存在，卸载之前的loading，重新创建
   if (loadingDom) unLoad()
 
@@ -31,8 +31,8 @@ export function showLoading(params?: any) {
     vnode.component!.exposed!.close().then(() => {
       unLoad()
     })
-    vnode = null;
-    loadingDom = null;
+    vnode = null
+    loadingDom = null
   }
 
   /**
@@ -47,4 +47,3 @@ export function showLoading(params?: any) {
     close,
   }
 }
-

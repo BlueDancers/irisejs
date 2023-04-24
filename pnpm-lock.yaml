@@ -33,11 +33,13 @@ importers:
 
   playground:
     specifiers:
-      '@irises/ui': workspace:^1.0.0
+      '@irisejs/shared': workspace:^1.0.0
       autoprefixer: ^10.4.14
+      irise: workspace:^1.0.0
       postcss-px-to-viewport: ^1.1.1
     dependencies:
-      '@irises/ui': link:../packages/src
+      '@irisejs/shared': link:../packages/shared
+      irise: link:../packages/src
     devDependencies:
       autoprefixer: 10.4.14
       postcss-px-to-viewport: 1.1.1
